@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://YOUR_SERVER_IP:5000";  // Updated to Port 5000
+const API_BASE_URL = "http://3.149.242.245:5000";  // Updated to Port 5000
 
 // Generate Link Function
 async function generatePhishingLink(lureId) {
