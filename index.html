@@ -3,71 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <title>Login - Evilginx Dashboard</title>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
+            margin: 0;
         }
         .login-container {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s ease-in-out;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Welcome Back</h2>
-        <form id="login-form">
-            <input type="email" id="email" placeholder="Email" required class="w-full p-3 border border-gray-300 rounded-md mb-3">
-            <input type="password" id="password" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded-md mb-3">
-            <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-md font-semibold hover:bg-purple-700 transition duration-300">
-                Login
-            </button>
-        </form>
-        <p id="error-message" class="text-red-500 text-sm mt-3 text-center"></p>
-    </div>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
-            authDomain: "panel-auth-134b7.firebaseapp.com",
-            projectId: "panel-auth-134b7",
-            storageBucket: "panel-auth-134b7.firebasestorage.app",
-            messagingSenderId: "892746068340",
-            appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
-        };
+<div class="login-container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
 
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
-        document.getElementById("login-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
+        authDomain: "panel-auth-134b7.firebaseapp.com",
+        projectId: "panel-auth-134b7",
+        storageBucket: "panel-auth-134b7.firebasestorage.app",
+        messagingSenderId: "892746068340",
+        appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
+    };
 
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    window.location.href = "dashboard.html";
-                })
-                .catch((error) => {
-                    document.getElementById("error-message").innerText = error.message;
-                });
-        });
-    </script>
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+                window.location.href = "dashboard.html";
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+    }
+</script>
+
 </body>
 </html>
