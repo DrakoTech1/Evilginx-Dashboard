@@ -3,82 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Evilginx Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #6a11cb;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Login | Evilginx Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <div class="login-container">
+        <h1>Login to Evilginx Dashboard</h1>
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button id="login-btn">Login</button>
+        <p id="error-message" class="error"></p>
+    </div>
 
-<div class="login-container">
-    <h2>Login</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-</div>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
+            authDomain: "panel-auth-134b7.firebaseapp.com",
+            projectId: "panel-auth-134b7",
+            storageBucket: "panel-auth-134b7.firebasestorage.app",
+            messagingSenderId: "892746068340",
+            appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
+        };
 
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
-        authDomain: "panel-auth-134b7.firebaseapp.com",
-        projectId: "panel-auth-134b7",
-        storageBucket: "panel-auth-134b7.firebasestorage.app",
-        messagingSenderId: "892746068340",
-        appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
-    };
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-
-    function login() {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        auth.signInWithEmailAndPassword(email, password)
-            .then(() => {
-                window.location.href = "dashboard.html";
-            })
-            .catch(error => {
-                alert(error.message);
-            });
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
