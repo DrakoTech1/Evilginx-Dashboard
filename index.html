@@ -11,13 +11,14 @@
         <h2>Login</h2>
         <input type="email" id="email" placeholder="Enter Email">
         <input type="password" id="password" placeholder="Enter Password">
-        <button onclick="login()">Login</button>
+        <button id="loginBtn">Login</button>
     </div>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase SDK (Corrected) -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
+    <!-- Load script.js AFTER Firebase is loaded -->
     <script src="script.js"></script>
 </body>
 </html>
