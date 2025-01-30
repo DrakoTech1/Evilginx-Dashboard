@@ -1,17 +1,20 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    margin: 0;
+    background: linear-gradient(120deg, #1a1a2e, #16213e, #0f3460);
+    color: white;
 }
 
 .animated-background {
-    background: linear-gradient(-45deg, #ff6b6b, #6b6bff, #6bffcb, #ffcb6b);
+    background: linear-gradient(-45deg, #ff7eb3, #ff758c, #ff7eb3);
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.animated-dashboard {
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
 }
 
 @keyframes gradientBG {
@@ -22,35 +25,26 @@ body {
 
 .login-container {
     width: 300px;
+    margin: 100px auto;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    color: white;
+}
+
+input, button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
 }
 
 button {
-    padding: 10px;
-    margin: 10px;
-    background: #ff6600;
-    border: none;
+    background: #ff758c;
     color: white;
+    border: none;
     cursor: pointer;
 }
 
-.dashboard-container {
-    width: 90%;
-    margin: auto;
-}
-
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    background: white;
-    color: black;
-}
-
-table, th, td {
-    border: 1px solid black;
-    padding: 10px;
+button:hover {
+    background: #ff7eb3;
 }
