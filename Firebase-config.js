@@ -1,4 +1,4 @@
-// Firebase configuration
+// Ensure Firebase is properly initialized
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
