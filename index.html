@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Evilginx Dashboard</title>
+    <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <input type="email" id="email" placeholder="Enter Email">
-        <input type="password" id="password" placeholder="Enter Password">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
         <button id="loginBtn">Login</button>
+        <p id="error-message"></p>
     </div>
 
-    <!-- Firebase SDK (Corrected) -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
-    <!-- Load script.js AFTER Firebase is loaded -->
+    <!-- Main Script -->
     <script src="script.js"></script>
 </body>
 </html>
