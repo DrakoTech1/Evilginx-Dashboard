@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+.animated-background {
+    background: linear-gradient(-45deg, #ff6b6b, #6b6bff, #6bffcb, #ffcb6b);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.login-container {
+    width: 300px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: white;
+}
+
+button {
+    padding: 10px;
+    margin: 10px;
+    background: #ff6600;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.dashboard-container {
+    width: 90%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
