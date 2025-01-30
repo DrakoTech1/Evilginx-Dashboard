@@ -5,34 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+
+    <!-- Dashboard script -->
+    <script defer src="dashboard.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
-        <h2>Welcome to Your Dashboard</h2>
-        <button id="logoutBtn">Logout</button>
-
-        <h3>Generate Phishing Link</h3>
-        <button id="generateLinkBtn">Generate Link</button>
-        <p id="generatedLink"></p>
-
-        <h3>Captured Sessions</h3>
-        <button id="fetchSessionsBtn">Load Sessions</button>
-        <table id="capturedSessionsTable">
-            <tr><th>Email</th><th>IP</th><th>Location</th><th>Time</th></tr>
-        </table>
-
-        <h3>Captured Cookies</h3>
-        <button id="fetchCookiesBtn">Load Cookies</button>
-        <table id="cookiesTable">
-            <tr><th>Session ID</th><th>Cookie Data</th></tr>
-        </table>
+        <h2>Welcome to the Dashboard</h2>
+        <button id="logoutButton">Logout</button>
     </div>
-
-    <!-- ✅ Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-
-    <!-- ✅ Correct Script Path -->
-    <script src="script.js"></script>
 </body>
 </html>
