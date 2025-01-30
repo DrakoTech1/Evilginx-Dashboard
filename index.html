@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Evilginx Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 </head>
 <body class="animated-background">
     <div class="login-container">
@@ -14,9 +12,10 @@
         <input type="email" id="email" placeholder="Email">
         <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
-        <p id="error-message"></p>
+        <p id="loginError" class="error-message"></p>
     </div>
-
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
