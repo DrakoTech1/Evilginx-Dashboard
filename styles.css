@@ -1,50 +1,38 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background: linear-gradient(120deg, #1a1a2e, #16213e, #0f3460);
+    background: linear-gradient(135deg, #4B0082, #8A2BE2);
     color: white;
-}
-
-.animated-background {
-    background: linear-gradient(-45deg, #ff7eb3, #ff758c, #ff7eb3);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-}
-
-.animated-dashboard {
-    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .login-container {
-    width: 300px;
     margin: 100px auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
 
 input, button {
     display: block;
-    width: 100%;
+    width: 80%;
+    margin: 10px auto;
     padding: 10px;
-    margin: 10px 0;
 }
 
 button {
-    background: #ff758c;
+    background: #FF4500;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-button:hover {
-    background: #ff7eb3;
+.dashboard-container {
+    padding: 20px;
+}
+
+#data-output {
+    margin-top: 20px;
 }
