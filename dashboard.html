@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Evilginx</title>
+    <title>Evilginx Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+</head>
+<body class="animated-dashboard">
+    <nav>
+        <h1>Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+    </nav>
+    <div class="container">
+        <button onclick="generatePhishingLink()">Generate Link</button>
+        <div id="generatedLink"></div>
+
+        <h2>Captured Sessions</h2>
+        <table id="capturedSessions">
+            <tr>
+                <th>Email</th>
+                <th>IP Address</th>
+                <th>Time</th>
+                <th>Location</th>
+            </tr>
+        </table>
+
+        <h2>Cookies</h2>
+        <table id="cookiesTable">
+            <tr>
+                <th>Session ID</th>
+                <th>Cookie Data</th>
+            </tr>
+        </table>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-</head>
-<body class="animated-background">
-    <div class="dashboard-container">
-        <nav>
-            <button onclick="generateLink()">Generate Link</button>
-            <button onclick="loadCapturedSessions()">Captured Sessions</button>
-            <button onclick="loadCookies()">Cookies</button>
-            <button onclick="logout()">Logout</button>
-        </nav>
-
-        <div id="content">
-            <h2>Dashboard</h2>
-            <p>Select an option from the menu.</p>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
