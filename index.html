@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login | Evilginx Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-
-    <!-- Firebase Config (✅ Must be before script.js) -->
-    <script src="firebase-config.js"></script>
-
-    <!-- Main script -->
-    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button id="loginButton">Login</button>
+        <h2>Welcome to Evilginx Dashboard</h2>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button id="loginBtn">Login</button>
+        <p id="loginError" style="color: red;"></p>
     </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
