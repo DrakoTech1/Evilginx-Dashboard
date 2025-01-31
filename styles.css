@@ -1,41 +1,81 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     background: linear-gradient(45deg, #6a11cb, #2575fc);
-    background-size: 400% 400%;
-    animation: gradientBG 6s ease infinite;
     color: white;
-    text-align: center;
-    padding: 20px;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .login-container {
-    max-width: 400px;
-    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
+    text-align: center;
 }
 
-input, button {
-    width: 90%;
+input {
+    display: block;
+    margin: 10px auto;
     padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
+    width: 80%;
 }
 
 button {
-    background-color: #ff4081;
-    color: white;
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #d81b60;
+.dashboard-body {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background: #222;
+    padding: 20px;
+    height: 100vh;
+}
+
+.menu-btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    background: #444;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: #666;
+}
+
+.logout-btn {
+    background: red;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid white;
+    text-align: left;
 }
