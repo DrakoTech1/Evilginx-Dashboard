@@ -1,36 +1,41 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(45deg, #6a11cb, #2575fc);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-size: 400% 400%;
+    animation: gradientBG 6s ease infinite;
     color: white;
+    text-align: center;
+    padding: 20px;
 }
 
-.login-container, .dashboard {
-    background: rgba(0, 0, 0, 0.7);
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
     padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 input, button {
-    display: block;
-    width: 80%;
-    margin: 10px auto;
+    width: 90%;
     padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
 }
 
 button {
-    background: #ff9800;
-    border: none;
+    background-color: #ff4081;
     color: white;
-    font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background: #e68900;
+    background-color: #d81b60;
 }
