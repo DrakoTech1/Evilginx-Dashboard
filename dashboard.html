@@ -7,50 +7,80 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            display: flex;
         }
-        #menu {
+        .sidebar {
             width: 200px;
-            height: 100vh;
-            background: #222;
+            background: #333;
             color: white;
             padding: 20px;
-            position: fixed;
-            left: 0;
-            top: 0;
+            height: 100vh;
         }
-        #menu button {
+        .sidebar button {
             display: block;
             width: 100%;
-            margin: 10px 0;
+            margin-bottom: 10px;
             padding: 10px;
+            background: #007bff;
             border: none;
-            background: #444;
-            color: white;
             cursor: pointer;
-            transition: 0.3s;
         }
-        #menu button:hover {
-            background: #666;
+        .sidebar button:hover {
+            background: #0056b3;
         }
-        #content {
-            margin-left: 220px;
+        .content {
             padding: 20px;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-<div id="menu">
+<div class="sidebar">
+    <h3>Menu</h3>
     <button onclick="generateLink()">Generate Link</button>
+    <button onclick="viewCapturedSessions()">Captured Sessions</button>
+    <button onclick="viewCookies()">Cookies</button>
     <button onclick="logout()">Logout</button>
 </div>
 
-<div id="content">
+<div class="content">
     <h2>Dashboard</h2>
-    <h3>Generated Phishing Link</h3>
-    <p id="generatedLink">Click "Generate Link" to create one.</p>
+    <h3>Captured Sessions</h3>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Cookies</th>
+            <th>IP</th>
+        </tr>
+        <tbody id="capturedSessions"></tbody>
+    </table>
+
+    <h3>Generated Links</h3>
+    <table>
+        <tr>
+            <th>Link</th>
+            <th>Clicked Location</th>
+            <th>IP</th>
+        </tr>
+        <tbody id="generatedLinks"></tbody>
+    </table>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
