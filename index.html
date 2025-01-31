@@ -6,23 +6,15 @@
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="login-body">
     <div class="login-container">
         <h2>Login</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="password" id="password" placeholder="Enter Password">
         <button onclick="login()">Login</button>
-        <p id="login-error" style="color: red;"></p>
+        <p id="login-error" class="error-message"></p>
     </div>
-
-    <!-- ✅ Load Firebase from script tags -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-
-    <!-- ✅ Load Firebase config -->
     <script src="firebase-config.js"></script>
-
-    <!-- ✅ Load script.js -->
     <script src="script.js"></script>
 </body>
 </html>
