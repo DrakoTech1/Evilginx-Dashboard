@@ -1,81 +1,67 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-    color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  color: white;
 }
 
-.login-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
+/* Login Page Styling */
 .login-container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 10px;
+  text-align: center;
 }
 
-input {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-.dashboard-body {
-    display: flex;
-}
-
+/* Dashboard Styling */
 .sidebar {
-    width: 250px;
-    background: #222;
-    padding: 20px;
-    height: 100vh;
+  width: 220px;
+  background: #222;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 20px;
 }
 
 .menu-btn {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    background: #444;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .menu-btn:hover {
-    background: #666;
+  background: #0056b3;
 }
 
-.logout-btn {
-    background: red;
-}
-
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
+.content {
+  margin-left: 240px;
+  padding: 20px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
 }
 
 th, td {
-    padding: 10px;
-    border: 1px solid white;
-    text-align: left;
+  padding: 10px;
+  text-align: center;
 }
