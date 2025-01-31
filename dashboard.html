@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard | Evilginx</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Load Firebase SDK -->
+  <!-- Load Firebase SDK (compat) -->
   <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
   <script defer src="firebase-config.js"></script>
@@ -18,9 +18,10 @@
     <button class="menu-btn" onclick="viewGeneratedLinks()">Generated Links</button>
     <button class="menu-btn" onclick="logout()">Logout</button>
   </div>
+  
   <div class="content">
     <h2>Dashboard</h2>
-
+    
     <h3>Captured Sessions</h3>
     <table>
       <thead>
@@ -32,10 +33,10 @@
         </tr>
       </thead>
       <tbody id="capturedSessions">
-        <!-- Captured sessions will be populated here -->
+        <!-- Captured sessions data will be inserted here -->
       </tbody>
     </table>
-
+    
     <h3>Generated Links History</h3>
     <table>
       <thead>
@@ -46,7 +47,7 @@
         </tr>
       </thead>
       <tbody id="generatedLinks">
-        <!-- Generated links will be populated here -->
+        <!-- Generated links history data will be inserted here -->
       </tbody>
     </table>
   </div>
