@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="login-body">
-    <div class="login-container">
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="Enter Email">
-        <input type="password" id="password" placeholder="Enter Password">
-        <button onclick="login()">Login</button>
-        <p id="login-error" class="error-message"></p>
-    </div>
+<body>
+    <h2>Login Page</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+
+    <!-- ✅ Correct Firebase Imports -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <!-- ✅ Firebase Config & Main Script -->
     <script src="firebase-config.js"></script>
     <script src="script.js"></script>
 </body>
