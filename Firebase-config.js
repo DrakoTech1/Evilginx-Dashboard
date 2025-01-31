@@ -1,3 +1,7 @@
+// Ensure Firebase SDK loads correctly
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
 // Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
@@ -8,10 +12,9 @@ const firebaseConfig = {
     appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
 };
 
-// Ensure Firebase is available before initializing
-if (typeof firebase !== 'undefined') {
-    firebase.initializeApp(firebaseConfig);
-    console.log("✅ Firebase initialized successfully.");
-} else {
-    console.error("❌ Firebase SDK failed to load.");
-}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+console.log("✅ Firebase initialized successfully.");
+export { auth };
