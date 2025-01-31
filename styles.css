@@ -6,62 +6,71 @@ body {
   color: white;
 }
 
-/* Login Page Styling */
+/* Login Page Styles */
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .login-container {
-  max-width: 400px;
-  margin: 100px auto;
+  background: rgba(0, 0, 0, 0.7);
   padding: 20px;
-  background: rgba(0,0,0,0.7);
   border-radius: 10px;
   text-align: center;
 }
-
-/* Dashboard Styling */
-.sidebar {
-  width: 220px;
-  background: #222;
+.login-container input {
+  margin: 10px 0;
+  padding: 10px;
+  width: 80%;
+}
+.login-container button {
+  padding: 10px 20px;
+  background: #007bff;
+  border: none;
   color: white;
+  cursor: pointer;
+}
+.login-container button:hover {
+  background: #0056b3;
+}
+
+/* Dashboard Styles */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
+  width: 220px;
   height: 100vh;
+  background: #222;
   padding: 20px;
 }
-
 .menu-btn {
-  display: block;
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
-  background: #007bff;
+  margin: 10px 0;
+  background: #ff4081;
   border: none;
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
 }
-
 .menu-btn:hover {
-  background: #0056b3;
+  background: #e91e63;
 }
-
 .content {
   margin-left: 240px;
   padding: 20px;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255,255,255,0.9);
   color: black;
 }
-
-table, th, td {
-  border: 1px solid #ccc;
-}
-
 th, td {
   padding: 10px;
+  border: 1px solid #ccc;
   text-align: center;
 }
