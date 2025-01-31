@@ -1,4 +1,4 @@
-// Firebase configuration
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -13,5 +13,5 @@ if (typeof firebase !== 'undefined') {
     firebase.initializeApp(firebaseConfig);
     console.log("✅ Firebase initialized successfully.");
 } else {
-    console.error("❌ Firebase SDK failed to load. Check your internet connection.");
+    console.error("❌ Firebase SDK failed to load.");
 }
