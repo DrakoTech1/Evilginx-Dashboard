@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- ✅ Load Firebase SDK from CDN (Fixed) -->
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-
-    <!-- ✅ Load Firebase Config & Main Script (Ensuring Firebase Loads First) -->
-    <script defer src="firebase-config.js"></script>
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Evilginx Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="Enter email"><br>
-        <input type="password" id="password" placeholder="Enter password"><br>
-        <button onclick="login()">Login</button>
-    </div>
+<body class="login-body">
+  <div class="login-container">
+    <h2>Welcome to Evilginx Dashboard</h2>
+    <input type="email" id="email" placeholder="Enter email" required>
+    <input type="password" id="password" placeholder="Enter password" required>
+    <button id="loginBtn">Login</button>
+    <p id="loginError" class="error-message"></p>
+  </div>
+
+  <!-- Load Firebase SDK (Compat versions) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+  <!-- Load Firebase configuration and main script -->
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
