@@ -1,4 +1,4 @@
-// Ensure Firebase is properly initialized
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -8,5 +8,10 @@ const firebaseConfig = {
     appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// Ensure Firebase is available before initializing
+if (typeof firebase !== 'undefined') {
+    firebase.initializeApp(firebaseConfig);
+    console.log("✅ Firebase initialized successfully.");
+} else {
+    console.error("❌ Firebase SDK failed to load. Check your internet connection.");
+}
