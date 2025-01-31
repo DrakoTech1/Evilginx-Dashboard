@@ -1,8 +1,4 @@
-// Ensure Firebase SDK loads correctly
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
-
-// Firebase Configuration
+// Firebase Configuration (Update with your Firebase project details)
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -13,8 +9,4 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-console.log("✅ Firebase initialized successfully.");
-export { auth };
+firebase.initializeApp(firebaseConfig);
