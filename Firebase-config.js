@@ -1,4 +1,4 @@
-// Firebase Configuration (Update with your Firebase project details)
+// ✅ Your Firebase Config
 const firebaseConfig = {
     apiKey: "AIzaSyDiNWtXm4oHQ6NpHPiLJjV4EDgU7yUQjq0",
     authDomain: "panel-auth-134b7.firebaseapp.com",
@@ -8,5 +8,7 @@ const firebaseConfig = {
     appId: "1:892746068340:web:f8c4d5b798e8bc48447c21"
 };
 
-// Initialize Firebase
+// ✅ Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+console.log("✅ Firebase initialized successfully");
