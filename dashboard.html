@@ -3,21 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard | Evilginx</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="dashboard">
-        <h1>Evilginx Dashboard</h1>
-        <button id="generateLinkBtn">Generate Phishing Link</button>
-        <button id="viewSessionsBtn">View Captured Sessions</button>
-        <button id="viewCookiesBtn">View Cookies</button>
+        <h1>Welcome to the Evilginx Dashboard</h1>
         <button id="logoutBtn">Logout</button>
-        
-        <div id="output"></div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <!-- Firebase Config and Dashboard Script -->
     <script src="firebase-config.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Redirect if not logged in
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) {
+                window.location.href = "index.html";
+            }
+        });
+
+        // Logout function
+        document.getElementById("logoutBtn").addEventListener("click", function () {
+            firebase.auth().signOut().then(() => {
+                window.location.href = "index.html";
+            }).catch(error => {
+                console.error("Logout Error:", error);
+            });
+        });
+    </script>
 </body>
 </html>
